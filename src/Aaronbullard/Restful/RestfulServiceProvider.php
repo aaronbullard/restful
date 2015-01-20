@@ -1,7 +1,7 @@
 <?php namespace Aaronbullard\Restful;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Response as IlluminateResponse;
+use Response as IlluminateResponse;
 use Aaronbullard\Restful\Adapters\LaravelResponder;
 use Aaronbullard\Restful\ResponderFacade;
 use Aaronbullard\Restful\Decorators\Status;
@@ -31,8 +31,10 @@ class RestfulServiceProvider extends ServiceProvider {
 	{
 		$this->app->bindShared('Aaronbullard\\Restful\\Responder', function($app) {
 
+			$responseObject = IlluminateResponse::getFacadeRoot();
+
 			// Make adapter since Laravel's Response::json is static and cannot use $this
-			$adapter = new LaravelResponder( new IlluminateResponse );
+			$adapter = new LaravelResponder( $responseObject );
 
 			// Now decorate
 			return new Data( new HttpCode( new Status( new Errors( new Meta( new Pagination( new Redirection( $adapter )))))));
