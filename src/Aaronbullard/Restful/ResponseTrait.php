@@ -1,6 +1,6 @@
 <?php namespace Aaronbullard\Restful;
 
-use Illuminate\Support\Facades\App;
+use App;
 
 trait ResponseTrait {
 
