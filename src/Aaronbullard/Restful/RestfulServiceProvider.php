@@ -1,7 +1,7 @@
 <?php namespace Aaronbullard\Restful;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Routing\ResponseFactory as IlluminateResponse;
+use Response as IlluminateResponse;
 use Aaronbullard\Restful\Adapters\LaravelResponder;
 use Aaronbullard\Restful\ResponderFacade;
 use Aaronbullard\Restful\Decorators\Status;
