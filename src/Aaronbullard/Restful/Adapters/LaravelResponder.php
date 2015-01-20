@@ -1,6 +1,6 @@
 <?php namespace Aaronbullard\Restful\Adapters;
 
-use Illuminate\Support\Facades\Response as IlluminateResponse;
+use Illuminate\Contracts\Routing\ResponseFactory as IlluminateResponse;
 use Aaronbullard\Restful\Responder;
 
 class LaravelResponder extends Responder {
