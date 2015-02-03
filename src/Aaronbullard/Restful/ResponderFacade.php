@@ -1,12 +1,33 @@
 <?php namespace Aaronbullard\Restful;
 
-class ResponderFacade implements ResponseInterface {
+use Aaronbullard\Restful\Interfaces\MetaInterface;
+
+class ResponderFacade implements ResponseInterface, MetaInterface {
 
 	protected $responder;
 
 	public function __construct(Responder $responder)
 	{
 		$this->responder = $responder;
+	}
+	
+	public function addMeta($key, $value)
+	{
+		$this->responder->addMeta($key, $value);
+		
+		return $this;
+	}
+	
+	public function setMeta(array $meta)
+	{
+		$this->responder->setMeta($meta);
+		
+		return $this;
+	}
+	
+	public function getMeta()
+	{
+		return $this->responder->getMeta();
 	}
 
 	protected function respondSuccess($data)
