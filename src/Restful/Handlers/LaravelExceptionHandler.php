@@ -1,7 +1,8 @@
 <?php namespace Aaronbullard\Restful\Handlers;
 
-use Aaronbullard\Restful\ResponseTrait;
 use Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Aaronbullard\Restful\ResponseTrait;
 use Aaronbullard\Exceptions\CoreException;
 use Aaronbullard\Exceptions\HttpException;
 use Aaronbullard\Exceptions\BadRequestException;
@@ -20,7 +21,9 @@ class LaravelExceptionHandler extends ExceptionHandler {
 	 *
 	 * @var array
 	 */
-	protected $dontReport = [];
+	protected $dontReport = [
+		'Symfony\Component\HttpKernel\Exception\HttpException'
+	];
 
 	/**
 	 * Report or log an exception.
@@ -49,10 +52,15 @@ class LaravelExceptionHandler extends ExceptionHandler {
 			return $this->handleHttpExceptions($e);
 		}
 
+		if ($this->isHttpException($e))
+		{
+			return $this->renderHttpException($e);
+		}
+
 		return parent::render($request, $e);
 	}
 
-	public function handleHttpExceptions(Exception $e)
+	protected function handleHttpExceptions(Exception $e)
 	{
 		try{
 			throw $e;
