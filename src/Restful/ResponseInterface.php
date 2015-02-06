@@ -7,6 +7,7 @@ interface ResponseInterface {
 	public function respondUnauthorized($message = 'Unauthorized Request!');
 	public function respondForbidden($message = 'Forbidden!');
 	public function respondNotFound($message = 'Not Found!');
+	public function respondMethodNotAllowed($message = 'Method Not Allowed!');
 	public function respondConflict($message = 'Conflict!');
 	public function respondFormValidation($message = 'Unprocessable Entity!', array $errors = NULL);
 	public function respondInternalError($message = 'Internal Error!');

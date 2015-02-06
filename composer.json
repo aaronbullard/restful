@@ -9,11 +9,23 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": "~5.0"
+        "laravel/framework": "~5.0",
+        "aaronbullard/exceptions": "dev-master"
     },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "codeception/codeception": "dev-master",
+        "mockery/mockery": "dev-master"
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/aaronbullard/exceptions",
+            "type": "vcs"
+        }
+    ],
     "autoload": {
-        "psr-0": {
-            "Aaronbullard\\Restful": "src/"
+        "psr-4": {
+            "Aaronbullard\\Restful\\": "src/Restful/"
         }
     },
     "minimum-stability": "stable"

@@ -46,6 +46,7 @@ class RestfulServiceProvider extends ServiceProvider {
 		});
 
 		$this->app->bind('Aaronbullard\\Restful\\ResponseInterface', 'Aaronbullard\\Restful\\ResponderFacade');
+
 	}
 
 	/**
