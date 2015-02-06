@@ -11,7 +11,7 @@ use Aaronbullard\Exceptions\MethodNotAllowedException;
 use Aaronbullard\Exceptions\NotFoundException;
 use Aaronbullard\Exceptions\UnauthorizedException;
 
-class LaravelExceptionBus extends ExceptionHandler {
+class LaravelExceptionHandler extends ExceptionHandler {
 
 	use ResponseTrait;
 
