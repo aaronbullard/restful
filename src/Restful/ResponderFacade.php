@@ -102,6 +102,14 @@ class ResponderFacade implements ResponseInterface, MetaInterface {
 		return $this->responder->respond();
 	}
 
+	public function respondMethodNotAllowed($message = 'Method Not Allowed!')
+	{
+		$this->respondError($message);
+
+		$this->responder->setHttpCode(405);
+		
+		return $this->responder->respond();
+	}
 
 	public function respondConflict($message = 'Conflict!')
 	{
