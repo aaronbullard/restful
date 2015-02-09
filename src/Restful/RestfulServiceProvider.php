@@ -46,11 +46,6 @@ class RestfulServiceProvider extends ServiceProvider {
 		});
 
 		$this->app->bind('Aaronbullard\\Restful\\ResponseInterface', 'Aaronbullard\\Restful\\ResponderFacade');
-
-		$this->app->singleton(
-			'Illuminate\Contracts\Debug\ExceptionHandler',
-			'Aaronbullard\\Restful\\Handlers\\LaravelExceptionHandler'
-		);
 	}
 
 	/**

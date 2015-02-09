@@ -26,19 +26,6 @@ class LaravelExceptionHandler extends ExceptionHandler {
 	];
 
 	/**
-	 * Report or log an exception.
-	 *
-	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-	 *
-	 * @param  \Exception  $e
-	 * @return void
-	 */
-	public function report(Exception $e)
-	{
-		return parent::report($e);
-	}
-
-	/**
 	 * Render an exception into an HTTP response.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
@@ -47,9 +34,9 @@ class LaravelExceptionHandler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		if ( $request->wantsJson() && is_subclass_of($e, 'Aaronbullard\\Exceptions\\CoreException'))
+		if ( $this->isCoreException($e) && $request->wantsJson() )
 		{
-			return $this->handleHttpExceptions($e);
+			return $this->renderCoreException($e);
 		}
 
 		if ($this->isHttpException($e))
@@ -60,7 +47,12 @@ class LaravelExceptionHandler extends ExceptionHandler {
 		return parent::render($request, $e);
 	}
 
-	protected function handleHttpExceptions(Exception $e)
+	protected function isCoreException(CoreException $e)
+	{
+		return is_subclass_of($e, 'Aaronbullard\\Exceptions\\CoreException');
+	}
+
+	protected function renderCoreException(CoreException $e)
 	{
 		try{
 			throw $e;
