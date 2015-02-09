@@ -34,7 +34,7 @@ class LaravelExceptionHandler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		if ( $this->isCoreException($e) && $request->wantsJson() )
+		if ( $this->isCoreException($e))
 		{
 			return $this->renderCoreException($e);
 		}
