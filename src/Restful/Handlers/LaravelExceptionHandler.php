@@ -9,6 +9,7 @@ use Aaronbullard\Exceptions\BadRequestException;
 use Aaronbullard\Exceptions\ForbiddenException;
 use Aaronbullard\Exceptions\InternaServerErrorException;
 use Aaronbullard\Exceptions\MethodNotAllowedException;
+use Aaronbullard\Exceptions\UnprocessableEntityException;
 use Aaronbullard\Exceptions\NotFoundException;
 use Aaronbullard\Exceptions\UnauthorizedException;
 
@@ -76,6 +77,10 @@ class LaravelExceptionHandler extends ExceptionHandler {
 		catch(MethodNotAllowedException $e)
 		{
 			return $this->getResponder()->respondMethodNotAllowed($e->getMessage());
+		}
+		catch(UnprocessableEntityException $e)
+		{
+			return $this->getResponder()->respondFormValidation($e->getMessage(), $e->getErrors());
 		}
 		catch(InternaServerErrorException $e)
 		{
