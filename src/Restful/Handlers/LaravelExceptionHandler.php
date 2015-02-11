@@ -47,7 +47,7 @@ class LaravelExceptionHandler extends ExceptionHandler {
 		return parent::render($request, $e);
 	}
 
-	protected function isCoreException(CoreException $e)
+	protected function isCoreException($e)
 	{
 		return is_subclass_of($e, 'Aaronbullard\\Exceptions\\CoreException');
 	}
