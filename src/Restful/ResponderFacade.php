@@ -121,7 +121,7 @@ class ResponderFacade implements ResponseInterface, MetaInterface {
 	}
 
 
-	public function respondFormValidation($message = 'Unprocessable Entity!', array $errors = NULL)
+	public function respondFormValidation($message = 'Unprocessable Entity!', array $errors = [])
 	{
 		$this->respondError($message, $errors);
 

@@ -9,6 +9,6 @@ interface ResponseInterface {
 	public function respondNotFound($message = 'Not Found!');
 	public function respondMethodNotAllowed($message = 'Method Not Allowed!');
 	public function respondConflict($message = 'Conflict!');
-	public function respondFormValidation($message = 'Unprocessable Entity!', array $errors = NULL);
+	public function respondFormValidation($message = 'Unprocessable Entity!', array $errors = []);
 	public function respondInternalError($message = 'Internal Error!');
 }

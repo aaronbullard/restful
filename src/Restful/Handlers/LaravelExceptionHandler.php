@@ -80,7 +80,9 @@ class LaravelExceptionHandler extends ExceptionHandler {
 		}
 		catch(UnprocessableEntityException $e)
 		{
-			return $this->getResponder()->respondFormValidation($e->getMessage(), $e->getErrors());
+			$errors = $e->getErrors();
+			$errors = is_null($errors) ? [] : $errors;
+			return $this->getResponder()->respondFormValidation($e->getMessage(), $errors);
 		}
 		catch(InternaServerErrorException $e)
 		{
